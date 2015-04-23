@@ -1,4 +1,3 @@
-
 /*
  *    Petduino.h - An Arduino library for interacting with a Petduino
  *    Copyright (c) 2015 Circuitbeard

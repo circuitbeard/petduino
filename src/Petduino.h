@@ -27,7 +27,10 @@
 #ifndef Petduino_h
 #define Petduino_h
 
+#include "LcdControl.h"
+
 class Petduino {
+	
     private :
       
 	// Keywords
@@ -41,6 +44,7 @@ class Petduino {
 	#define DEBOUNCETIME 50
 	
 	// Variables
+	LcdControl lc;
 	
 	// Methods
 	void updateDisplay();

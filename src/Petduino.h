@@ -30,39 +30,39 @@
 class Petduino {
     private :
       
-      // Keywords
-    	#define DIN 6
-    	#define CS 8
-    	#define CLK 9
-    	#define LED 4
-    	#define BUZZER 5
-    	#define TMP 6
-    	
-    	#define DEBOUNCETIME 50
-    	
-    	// Variables
-    	
-    	// Methods
-	    void updateDisplay();
+	// Keywords
+	#define DIN 6
+	#define CS 8
+	#define CLK 9
+	#define LED 4
+	#define BUZZER 5
+	#define TMP 6
+	
+	#define DEBOUNCETIME 50
+	
+	// Variables
+	
+	// Methods
+	void updateDisplay();
 
     public:
     
-      Petduino();
+	Petduino();
       
-      // Keywords
-    	#define BTN1 0
-    	#define BTN2 1
-    	#define LDR 3
-    	
-    	// Variables
-    	
-    	// Methods
-	    void setLED(bool value);
-	    void toggleLED();
-	    
-	    void fill();
-	    void clear();
-	    void drawImage(byte* img);
+	// Keywords
+	#define BTN1 0
+	#define BTN2 1
+	#define LDR 3
+	
+	// Variables
+	
+	// Methods
+	void setLED(bool value);
+	void toggleLED();
+	
+	void fill();
+	void clear();
+	void drawImage(byte* img);
     	
 }
 

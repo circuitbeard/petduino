@@ -1,5 +1,4 @@
 # Petduino
-Arduino library for interacting with a Petduino.  
 Provides a collection of helper methods for creating animations, melodies and interactions with a Petduino.
 
 ## Installation

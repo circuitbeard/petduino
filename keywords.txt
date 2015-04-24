@@ -1,0 +1,40 @@
+#######################################
+# Syntax Coloring Map For Petduino
+#######################################
+
+#######################################
+# Datatypes (KEYWORD1)
+#######################################
+
+Petduino	KEYWORD1
+
+#######################################
+# Methods and Functions (KEYWORD2)
+#######################################
+
+begin	KEYWORD2
+loop	KEYWORD2
+setLed	KEYWORD2
+toggleLed	KEYWORD2
+getTemperature		KEYWORD2
+setRow		KEYWORD2
+getLightLevel	KEYWORD2
+isBtn1Pressed	KEYWORD2
+isBtn1Held		KEYWORD2
+isBtn2Pressed	KEYWORD2
+isBtn2Held	KEYWORD2
+playTone	KEYWORD2
+playMelody	KEYWORD2
+stopTone		KEYWORD2
+fillScreen		KEYWORD2
+clearScreen	KEYWORD2
+drawImage	KEYWORD2
+playAnimation		KEYWORD2
+stopAnimation		KEYWORD2
+getState	KEYWORD2
+setState		KEYWORD2
+setNextState		KEYWORD2
+
+#######################################
+# Constants (LITERAL1)
+#######################################

@@ -1,5 +1,6 @@
 # Petduino
-Arduino library for interacting with a Petduino.
+Arduino library for interacting with a Petduino.  
+Provides a collection of helper methods for creating animations, melodies and interactions with a Petduino.
 
 ## Installation
 1. Download and install the latest version of the [Arduino IDE](http://www.arduino.cc/en/main/software).

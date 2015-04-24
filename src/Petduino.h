@@ -1,7 +1,7 @@
 /*
  *    Petduino.h - An Arduino library for interacting with a Petduino
  *    Copyright (c) 2015 Circuitbeard
- * 
+ *
  *    Permission is hereby granted, free of charge, to any person
  *    obtaining a copy of this software and associated documentation
  *    files (the "Software"), to deal in the Software without
@@ -10,10 +10,10 @@
  *    copies of the Software, and to permit persons to whom the
  *    Software is furnished to do so, subject to the following
  *    conditions:
- * 
- *    This permission notice shall be included in all copies or 
+ *
+ *    This permission notice shall be included in all copies or
  *    substantial portions of the Software.
- * 
+ *
  *    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
  *    EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
  *    OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
@@ -26,48 +26,101 @@
 
 #ifndef Petduino_h
 #define Petduino_h
-
-#include "LcdControl.h"
+#include <LedControl.h>
 
 class Petduino {
-	
+
     private :
-      
-	// Keywords
-	#define DIN 6
-	#define CS 8
-	#define CLK 9
-	#define LED 4
-	#define BUZZER 5
-	#define TMP 6
-	
-	#define DEBOUNCETIME 50
-	
-	// Variables
-	LcdControl lc;
-	
-	// Methods
-	void updateDisplay();
+
+			// Keywords
+			#define DIN    12
+			#define CS     11
+			#define CLK    10
+			#define LED    2
+			#define BUZZER 3
+			#define TMP    16 //A2
+			#define BTN1   14 //A0
+			#define BTN2   15 //A1
+			#define LDR    17 //A3
+
+			#define DEBOUNCETIME  10 //ms
+
+			// Variables
+			LedControl lc = LedControl(DIN, CLK, CS, 1);
+
+			int btn1State = HIGH;
+			int btn1LastState = HIGH;
+			unsigned long btn1DebounceTimestamp;
+
+			int btn2State = HIGH;
+			int btn2LastState = HIGH;
+			unsigned long btn2DebounceTimestamp;
+
+			unsigned int* melodyFrequencies;
+			unsigned long* melodyDurations;
+			unsigned long melodyLength;
+			unsigned long melodyLoopCount;
+			unsigned long melodyIdx;
+			unsigned long melodyTimestamp;
+			unsigned long melodyLoopCounter;
+
+			byte** animFrames;
+			unsigned long* animFrameDurations;
+			unsigned long animLength;
+			unsigned long animLoopCount;
+			unsigned long animIdx;
+			unsigned long animTimestamp;
+			unsigned long animLoopCounter;
+
+			unsigned int currentState;
+			unsigned int nextState;
+			unsigned long stateTimestamp;
+			unsigned long stateInterval;
+
+			// Methods
+			void drawRow(int row, byte rowValue);
+			bool stateExpired();
+			bool debounce(uint8_t pin, int &state, int &lastState, unsigned long &debounceTimestamp);
+
+			void updateMelody();
+			void playMelodyTone(unsigned long idx);
+
+			void updateAnimation();
+			void playAnimationFrame(unsigned long idx);
 
     public:
-    
-	Petduino();
-      
-	// Keywords
-	#define BTN1 0
-	#define BTN2 1
-	#define LDR 3
-	
-	// Variables
-	
-	// Methods
-	void setLED(bool value);
-	void toggleLED();
-	
-	void fill();
-	void clear();
-	void drawImage(byte* img);
-    	
-}
+
+			Petduino();
+
+			// Methods
+			void begin();
+			void loop();
+
+			void setLed(bool value);
+			void toggleLed();
+
+			float getTemperature();
+			int getLightLevel();
+
+			bool isBtn1Pressed();
+			bool isBtn1Held();
+			bool isBtn2Pressed();
+			bool isBtn2Held();
+
+			void playTone(unsigned int frequency, unsigned long duration);
+			void playMelody(unsigned int frequencies[], unsigned long durations[], unsigned long length, unsigned long loopCount);
+			void stopTone();
+
+			void fillScreen();
+			void clearScreen();
+			void drawImage(byte* img);
+			void playAnimation(byte** frames, unsigned long frameDurations[], unsigned long length, unsigned long loopCount);
+			void stopAnimation();
+
+			unsigned int getState();
+			void setState(unsigned int state);
+			void setNextState(unsigned int state, unsigned long interval);
+
+};
 
 #endif	//Petduino.h

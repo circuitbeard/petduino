@@ -199,25 +199,25 @@ int Petduino::getLightLevel() {
 // Returns true if button 1 is pressed
 bool Petduino::isBtn1Pressed() {
   bool changed = debounce(BTN1, btn1State, btn1LastState, btn1DebounceTimestamp);
-	return btn1State == LOW && changed;
+  return btn1State == LOW && changed;
 }
 
 // Returns true while button 1 is held down
 bool Petduino::isBtn1Held() {
   debounce(BTN1, btn1State, btn1LastState, btn1DebounceTimestamp);
-	return btn1State == LOW;
+  return btn1State == LOW;
 }
 
 // Returns true if button 2 is pressed
 bool Petduino::isBtn2Pressed() {
   bool changed = debounce(BTN2, btn2State, btn2LastState, btn2DebounceTimestamp);
-	return btn2State == LOW && changed;
+  return btn2State == LOW && changed;
 }
 
 // Returns true while button 2 is held down
 bool Petduino::isBtn2Held() {
   debounce(BTN2, btn2State, btn2LastState, btn2DebounceTimestamp);
-	return btn2State == LOW;
+  return btn2State == LOW;
 }
 
 // Plays a tone at the given frequency for the specified duration
@@ -264,8 +264,8 @@ void Petduino::clearScreen() {
 // Draw an image to the screen
 void Petduino::drawImage(byte* img) {
   for(int r=0; r<8; r++) {
-		drawRow(r, img[r]);
-	}
+    drawRow(r, img[r]);
+  }
 }
 
 // Draw an animation seuquence to the screen

@@ -1,5 +1,5 @@
 /*
- *    Alien.ino - Alien example using the Petduino library
+ *    AlienDelay.ino - Alien example using delay and the Petduino library
  *    Copyright (c) 2015 Circuitbeard
  *
  *    Permission is hereby granted, free of charge, to any person
@@ -66,19 +66,14 @@ void loop() {
   // Call pet loop
   pet.loop();
   
-  // Update display based on current state
-  switch(pet.getState()){
-    
-    case 1: // Alien1
-      pet.drawImage(alien1);
-      pet.playTone(200, 200);
-      pet.setNextState(2, 1000);
-      break;
+  // Alien1
+  pet.drawImage(alien1);
+  pet.playTone(200, 200);
+  delay(1000);
       
-    case 2: // Alien2
-      pet.drawImage(alien2);
-      pet.playTone(100, 200);
-      pet.setNextState(1, 1000);
-  }
+  // Alien2
+  pet.drawImage(alien2);
+  pet.playTone(100, 200);
+  delay(1000);
 
 }

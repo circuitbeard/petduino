@@ -83,7 +83,7 @@ void Petduino::drawRow(int row, byte rowValue) {
 }
 
 // Check to see if the state timer has expired and thus a change of state needs to occur
-bool Petduino::stateExpired() {
+bool Petduino::stateIntervalExpired() {
   if (stateInterval > 0 && millis() - stateTimestamp >= stateInterval) {
     stateTimestamp = millis();
     return true;
@@ -289,7 +289,7 @@ void Petduino::stopAnimation() {
 
 // Gets the current state, switching state if next action should occur
 unsigned int Petduino::getState() {
-  if(currentState == 0 && stateExpired()) {
+  if(currentState == WAITINTERVALSTATE && stateIntervalExpired()) {
     setState(nextState);
   }
   return currentState;
@@ -306,7 +306,7 @@ void Petduino::setNextState(unsigned int state, unsigned long interval) {
     currentState = state; // Apply the state imediatly
     stateInterval = 0; // Reset state interval
   } else {
-    currentState = 0; // Set to wait mode
+    currentState = WAITINTERVALSTATE; // Set to wait mode
     nextState = state; // Store next state
     stateInterval = interval; // Store interval to wait
     stateTimestamp = millis();  // Store current time
@@ -315,5 +315,5 @@ void Petduino::setNextState(unsigned int state, unsigned long interval) {
 
 // Wait indefinately
 void Petduino::wait() {
-  setState(UINTMAX);
+  setState(WAITSTATE);
 }

@@ -49,8 +49,8 @@ byte alien2[8]={
   B10100101
 };
 
-#define ALIEN1STATE 1
-#define ALIEN2STATE 2
+#define ALIEN1STATE 0
+#define ALIEN2STATE 1
 
 Petduino pet = Petduino();
 

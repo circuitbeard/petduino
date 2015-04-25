@@ -44,7 +44,9 @@ class Petduino {
       #define LDR    17 //A3
 
       #define DEBOUNCETIME  10 //ms
-      #define UINTMAX 65535
+
+      #define WAITINTERVALSTATE 65535 //UInt Max
+      #define WAITSTATE 65534 //UInt Max - 1
 
       // Variables
       LedControl lc = LedControl(DIN, CLK, CS, 1);
@@ -80,7 +82,7 @@ class Petduino {
 
       // Methods
       void drawRow(int row, byte rowValue);
-      bool stateExpired();
+      bool stateIntervalExpired();
       bool debounce(uint8_t pin, int &state, int &lastState, unsigned long &debounceTimestamp);
 
       void updateMelody();

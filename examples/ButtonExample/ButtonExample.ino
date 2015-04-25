@@ -37,7 +37,7 @@ byte question[8] = {
   B00000000,
   B00011000
 };
-  
+
 byte leftArrow[8] = {
   B00010000,
   B00110000,
@@ -60,9 +60,9 @@ byte rightArrow[8] = {
   B00001000
 };
 
-#define QUESTIONSTATE 1
-#define LEFTSTATE 2
-#define RIGHTSTATE 3
+#define QUESTIONSTATE 0
+#define LEFTSTATE 1
+#define RIGHTSTATE 2
 
 Petduino pet = Petduino();
 
@@ -70,7 +70,7 @@ void setup() {
 
   // Setup Petduino
   pet.begin();
-  
+
   // Set initial state
   pet.setState(QUESTIONSTATE);
 
@@ -96,7 +96,7 @@ void loop() {
     case QUESTIONSTATE:
       pet.drawImage(question);
       pet.wait();
-      break; 
+      break;
     case LEFTSTATE:
       pet.drawImage(leftArrow);
       pet.setNextState(QUESTIONSTATE, 1000);

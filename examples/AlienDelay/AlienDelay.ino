@@ -52,25 +52,22 @@ byte alien2[8]={
 Petduino pet = Petduino();
 
 void setup() {
-  
+
   // Setup Petduino
   pet.begin();
-  
-  // Set initial state
-  pet.setState(1);
-  
+
 }
 
 void loop() {
-  
+
   // Call pet loop
   pet.loop();
-  
+
   // Alien1
   pet.drawImage(alien1);
   pet.playTone(200, 200);
   delay(1000);
-      
+
   // Alien2
   pet.drawImage(alien2);
   pet.playTone(100, 200);

@@ -312,3 +312,8 @@ void Petduino::setNextState(unsigned int state, unsigned long interval) {
     stateTimestamp = millis();  // Store current time
   }
 }
+
+// Wait indefinately
+void Petduino::wait() {
+  setState(UINTMAX);
+}

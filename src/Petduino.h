@@ -44,6 +44,7 @@ class Petduino {
       #define LDR    17 //A3
 
       #define DEBOUNCETIME  10 //ms
+      #define UINTMAX 65535
 
       // Variables
       LedControl lc = LedControl(DIN, CLK, CS, 1);
@@ -120,6 +121,7 @@ class Petduino {
       unsigned int getState();
       void setState(unsigned int state);
       void setNextState(unsigned int state, unsigned long interval);
+      void wait();
 
 };
 

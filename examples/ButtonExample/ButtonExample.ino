@@ -27,18 +27,82 @@
 #include <LedControl.h>
 #include <Petduino.h>
 
+byte question[8] = {
+  B01111110,
+  B11111111,
+  B11000011,
+  B00001110,
+  B00011100,
+  B00011000,
+  B00000000,
+  B00011000
+};
+  
+byte leftArrow[8] = {
+  B00010000,
+  B00110000,
+  B01110000,
+  B11111111,
+  B11111111,
+  B01110000,
+  B00110000,
+  B00010000
+};
+
+byte rightArrow[8] = {
+  B00001000,
+  B00001100,
+  B00001110,
+  B11111111,
+  B11111111,
+  B00001110,
+  B00001100,
+  B00001000
+};
+
+#define QUESTIONSTATE 1
+#define LEFTSTATE 2
+#define RIGHTSTATE 3
+
 Petduino pet = Petduino();
 
 void setup() {
-  
+
   // Setup Petduino
   pet.begin();
   
+  // Set initial state
+  pet.setState(QUESTIONSTATE);
+
 }
 
 void loop() {
-  
+
   // Call pet loop
   pet.loop();
 
+  // Check button 1
+  if(pet.isBtn1Pressed()) {
+    pet.setState(LEFTSTATE);
+  }
+
+  // Check button 2
+  if(pet.isBtn2Pressed()) {
+    pet.setState(RIGHTSTATE);
+  }
+
+  // Handle current state
+  switch(pet.getState()){
+    case QUESTIONSTATE:
+      pet.drawImage(question);
+      break; 
+    case LEFTSTATE:
+      pet.drawImage(leftArrow);
+      pet.setNextState(QUESTIONSTATE, 1000);
+      break;
+    case RIGHTSTATE:
+      pet.drawImage(rightArrow);
+      pet.setNextState(QUESTIONSTATE, 1000);
+      break;
+  }
 }

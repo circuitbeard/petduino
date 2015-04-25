@@ -262,14 +262,14 @@ void Petduino::clearScreen() {
 }
 
 // Draw an image to the screen
-void Petduino::drawImage(byte* img) {
+void Petduino::drawImage(byte img[]) {
   for(int r=0; r<8; r++) {
     drawRow(r, img[r]);
   }
 }
 
 // Draw an animation seuquence to the screen
-void Petduino::playAnimation(byte** frames, unsigned long frameDurations[], unsigned long length, unsigned long loopCount) {
+void Petduino::playAnimation(byte frames[][8], unsigned long frameDurations[], unsigned long length, unsigned long loopCount) {
   stopAnimation();
   animFrames = frames;
   animFrameDurations = frameDurations;

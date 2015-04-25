@@ -64,7 +64,7 @@ class Petduino {
       unsigned long melodyTimestamp;
       unsigned long melodyLoopCounter;
 
-      byte** animFrames;
+      byte (*animFrames)[8];
       unsigned long* animFrameDurations;
       unsigned long animLength;
       unsigned long animLoopCount;
@@ -113,8 +113,8 @@ class Petduino {
 
       void fillScreen();
       void clearScreen();
-      void drawImage(byte* img);
-      void playAnimation(byte** frames, unsigned long frameDurations[], unsigned long length, unsigned long loopCount);
+      void drawImage(byte img[]);
+      void playAnimation(byte frames[][8], unsigned long frameDurations[], unsigned long length, unsigned long loopCount);
       void stopAnimation();
 
       unsigned int getState();

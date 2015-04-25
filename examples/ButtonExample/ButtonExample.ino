@@ -95,6 +95,7 @@ void loop() {
   switch(pet.getState()){
     case QUESTIONSTATE:
       pet.drawImage(question);
+      pet.wait();
       break; 
     case LEFTSTATE:
       pet.drawImage(leftArrow);

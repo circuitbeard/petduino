@@ -116,24 +116,22 @@ unsigned int currentFrame;
 Petduino pet = Petduino();
 
 void setup() {
-  
+
   // Setup Petduino
   pet.begin();
-  
+
 }
 
 void loop() {
-  
+
   // Call pet loop
   pet.loop();
-  
+
   // Map reading to a frame
   currentFrame = map(pet.getLightLevel(), 0, 1023, 0, FRAMECOUNT);
-  
+
   // Draw the frame
   pet.drawImage(frames[currentFrame]);
-  
-  // Wait a split second and repeat
   delay(200);
 
 }

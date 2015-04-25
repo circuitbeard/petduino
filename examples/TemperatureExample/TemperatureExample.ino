@@ -133,6 +133,7 @@ byte numbers[NUMBERCOUNT][8] = {
 
 float temp;
 unsigned int ones, tens;
+byte num[8];
 
 Petduino pet = Petduino();
 
@@ -156,7 +157,6 @@ void loop() {
   ones = temp-tens*10;
     
   // Generate number graphic
-  byte num[8];
   for(int b = 0; b < 8; b++){
     num[b] = numbers[tens][b] | numbers[ones][b] >> 4;
   }

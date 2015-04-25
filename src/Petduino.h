@@ -97,7 +97,7 @@ class Petduino {
 
       // Methods
       void begin();
-      void loop();
+      void update();
 
       void setLed(bool value);
       void toggleLed();

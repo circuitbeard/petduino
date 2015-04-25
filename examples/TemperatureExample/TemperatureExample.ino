@@ -138,29 +138,29 @@ byte num[8];
 Petduino pet = Petduino();
 
 void setup() {
-  
+
   // Setup Petduino
   pet.begin();
-  
+
 }
 
 void loop() {
-  
-  // Call pet loop
-  pet.loop();
-  
+
+  // Update pet
+  pet.update();
+
   // Get the temperature
   temp = pet.getTemperature();
-  
+
   // Split the digits
   tens = temp/10;
   ones = temp-tens*10;
-    
+
   // Generate number graphic
   for(int b = 0; b < 8; b++){
     num[b] = numbers[tens][b] | numbers[ones][b] >> 4;
   }
-  
+
   // Draw the number to the display
   pet.drawImage(num);
   delay(500);

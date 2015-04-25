@@ -124,8 +124,8 @@ void setup() {
 
 void loop() {
 
-  // Call pet loop
-  pet.loop();
+  // Update pet
+  pet.update();
 
   // Map reading to a frame
   currentFrame = map(pet.getLightLevel(), 0, 1023, 0, FRAMECOUNT);

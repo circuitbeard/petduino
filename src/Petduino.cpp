@@ -67,8 +67,8 @@ void Petduino::begin(){
 
 }
 
-// Loop function to be called from main loop() method
-void Petduino::loop() {
+// Update function to be called from main loop() method
+void Petduino::update() {
   updateMelody();
   updateAnimation();
 }

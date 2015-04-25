@@ -78,8 +78,8 @@ void setup() {
 
 void loop() {
 
-  // Call pet loop
-  pet.loop();
+  // Update pet
+  pet.update();
 
   // Check button 1
   if(pet.isBtn1Pressed()) {

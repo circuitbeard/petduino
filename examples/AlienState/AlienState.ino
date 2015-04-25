@@ -66,8 +66,8 @@ void setup() {
 
 void loop() {
 
-  // Call pet loop
-  pet.loop();
+  // Update pet
+  pet.update();
 
   // Update display based on current state
   switch(pet.getState()){

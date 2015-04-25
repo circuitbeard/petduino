@@ -13,7 +13,7 @@ Petduino	KEYWORD1
 #######################################
 
 begin	KEYWORD2
-loop	KEYWORD2
+update	KEYWORD2
 setLed	KEYWORD2
 toggleLed	KEYWORD2
 getTemperature	KEYWORD2

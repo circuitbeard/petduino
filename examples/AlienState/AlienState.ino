@@ -49,36 +49,39 @@ byte alien2[8]={
   B10100101
 };
 
+#define ALIEN1STATE 1
+#define ALIEN2STATE 2
+
 Petduino pet = Petduino();
 
 void setup() {
-  
+
   // Setup Petduino
   pet.begin();
-  
+
   // Set initial state
-  pet.setState(1);
-  
+  pet.setState(ALIEN1STATE);
+
 }
 
 void loop() {
-  
+
   // Call pet loop
   pet.loop();
-  
+
   // Update display based on current state
   switch(pet.getState()){
-    
-    case 1: // Alien1
+
+    case ALIEN1STATE:
       pet.drawImage(alien1);
       pet.playTone(200, 200);
-      pet.setNextState(2, 1000);
+      pet.setNextState(ALIEN2STATE, 1000);
       break;
-      
-    case 2: // Alien2
+
+    case ALIEN2STATE:
       pet.drawImage(alien2);
       pet.playTone(100, 200);
-      pet.setNextState(1, 1000);
+      pet.setNextState(ALIEN1STATE, 1000);
   }
 
 }

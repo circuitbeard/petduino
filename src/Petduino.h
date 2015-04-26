@@ -43,10 +43,10 @@ class Petduino {
       #define BTN2   15 //A1
       #define LDR    17 //A3
 
-      #define DEBOUNCETIME  10 //ms
+      #define DEBOUNCE_TIME  10 //ms
 
-      #define WAITINTERVALSTATE 65535 //UInt Max
-      #define WAITSTATE 65534 //UInt Max - 1
+      #define WAIT_INTERVAL_STATE 65535 //UInt Max
+      #define WAIT_STATE 65534 //UInt Max - 1
 
       // Variables
       LedControl lc = LedControl(DIN, CLK, CS, 1);

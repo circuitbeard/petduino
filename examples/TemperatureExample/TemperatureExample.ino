@@ -27,8 +27,8 @@
 #include <LedControl.h>
 #include <Petduino.h>
 
-#define NUMBERCOUNT 10
-byte numbers[NUMBERCOUNT][8] = {
+#define NUMBER_COUNT 10
+byte numbers[NUMBER_COUNT][8] = {
   {
     B11100000,
     B10100000,
@@ -159,7 +159,7 @@ void loop() {
   for(int b = 0; b < 8; b++){
     pet.drawRow(b, numbers[tens][b] | numbers[ones][b] >> 4);
   }
-  
+
   // Wait for a second
   delay(1000);
 

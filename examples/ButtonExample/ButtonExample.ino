@@ -60,9 +60,9 @@ byte rightArrow[8] = {
   B00001000
 };
 
-#define QUESTIONSTATE 0
-#define LEFTSTATE 1
-#define RIGHTSTATE 2
+#define QUESTION_STATE 0
+#define LEFT_STATE 1
+#define RIGHT_STATE 2
 
 Petduino pet = Petduino();
 
@@ -72,7 +72,7 @@ void setup() {
   pet.begin();
 
   // Set initial state
-  pet.setState(QUESTIONSTATE);
+  pet.setState(QUESTION_STATE);
 
 }
 
@@ -83,27 +83,27 @@ void loop() {
 
   // Check button 1
   if(pet.isBtn1Pressed()) {
-    pet.setState(LEFTSTATE);
+    pet.setState(LEFT_STATE);
   }
 
   // Check button 2
   if(pet.isBtn2Pressed()) {
-    pet.setState(RIGHTSTATE);
+    pet.setState(RIGHT_STATE);
   }
 
   // Handle current state
   switch(pet.getState()){
-    case QUESTIONSTATE:
+    case QUESTION_STATE:
       pet.drawImage(question);
       pet.wait();
       break;
-    case LEFTSTATE:
+    case LEFT_STATE:
       pet.drawImage(leftArrow);
-      pet.setNextState(QUESTIONSTATE, 1000);
+      pet.setNextState(QUESTION_STATE, 1000);
       break;
-    case RIGHTSTATE:
+    case RIGHT_STATE:
       pet.drawImage(rightArrow);
-      pet.setNextState(QUESTIONSTATE, 1000);
+      pet.setNextState(QUESTION_STATE, 1000);
       break;
   }
 }

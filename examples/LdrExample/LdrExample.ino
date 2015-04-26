@@ -27,8 +27,8 @@
 #include <LedControl.h>
 #include <Petduino.h>
 
-#define FRAMECOUNT 8
-byte frames[FRAMECOUNT][8] = {
+#define FRAME_COUNT 8
+byte frames[FRAME_COUNT][8] = {
   {
     B00000000,
     B00000000,
@@ -128,7 +128,7 @@ void loop() {
   pet.update();
 
   // Map reading to a frame
-  currentFrame = map(pet.getLightLevel(), 0, 1023, 0, FRAMECOUNT);
+  currentFrame = map(pet.getLightLevel(), 0, 1023, 0, FRAME_COUNT);
 
   // Draw the frame
   pet.drawImage(frames[currentFrame]);

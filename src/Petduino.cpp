@@ -91,7 +91,7 @@ bool Petduino::debounce(uint8_t pin, int &state, int &lastState, unsigned long &
   if(reading != lastState) {
     debounceTimestamp = millis();
   }
-  if((millis() - debounceTimestamp) > DEBOUNCETIME)
+  if((millis() - debounceTimestamp) > DEBOUNCE_TIME)
   {
     if (reading != state) {
       state = reading;
@@ -289,7 +289,7 @@ void Petduino::stopAnimation() {
 
 // Gets the current state, switching state if next action should occur
 unsigned int Petduino::getState() {
-  if(currentState == WAITINTERVALSTATE && stateIntervalExpired()) {
+  if(currentState == WAIT_INTERVAL_STATE && stateIntervalExpired()) {
     setState(nextState);
   }
   return currentState;
@@ -306,7 +306,7 @@ void Petduino::setNextState(unsigned int state, unsigned long interval) {
     currentState = state; // Apply the state imediatly
     stateInterval = 0; // Reset state interval
   } else {
-    currentState = WAITINTERVALSTATE; // Set to wait mode
+    currentState = WAIT_INTERVAL_STATE; // Set to wait mode
     nextState = state; // Store next state
     stateInterval = interval; // Store interval to wait
     stateTimestamp = millis();  // Store current time
@@ -315,5 +315,5 @@ void Petduino::setNextState(unsigned int state, unsigned long interval) {
 
 // Wait indefinately
 void Petduino::wait() {
-  setState(WAITSTATE);
+  setState(WAIT_STATE);
 }

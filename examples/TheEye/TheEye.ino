@@ -97,7 +97,7 @@ void loop() {
 
     case DEFAULT_STATE:
       if (random(0, 5) == 0) { 
-        pet.setNextState(BLINK_ANIM_STATE, 500); // Randomly blink
+        pet.setState(BLINK_ANIM_STATE); // Random blink
       } else {
         drawEye();
         pet.setNextState(PUPIL_ANIM_STATE, random(5, 7) * 500); // Move pupil
@@ -108,7 +108,6 @@ void loop() {
       // Choose random pupil position
       targetPupilX = random(PUPIL_MIN_OFFSET, PUPIL_MAX_OFFSET + 1);
       targetPupilY = random(PUPIL_MIN_OFFSET, PUPIL_MAX_OFFSET + 1);
-      pet.setState(PUPIL_ANIM_LOOP_STATE);
       // Don't break so we fall throuh to first loop straight away
     case PUPIL_ANIM_LOOP_STATE:
       if(currentPupilX != targetPupilX || currentPupilY != targetPupilY){
@@ -133,8 +132,8 @@ void loop() {
       break;
     case BLINK_ANIM_OPEN_LOOP_STATE:
       if(blinkState > 0) {
-        blinkState--;
         updateBlinkAnim();
+        blinkState--;
         pet.setNextState(BLINK_ANIM_OPEN_LOOP_STATE, BLINK_SPEED);
       } else {
         drawEye();

@@ -1,29 +1,3 @@
-/*
- *    TheEye.ino - The Eye example using the Petduino library
- *    Copyright (c) 2015 Circuitbeard
- *
- *    Permission is hereby granted, free of charge, to any person
- *    obtaining a copy of this software and associated documentation
- *    files (the "Software"), to deal in the Software without
- *    restriction, including without limitation the rights to use,
- *    copy, modify, merge, publish, distribute, sublicense, and/or sell
- *    copies of the Software, and to permit persons to whom the
- *    Software is furnished to do so, subject to the following
- *    conditions:
- *
- *    This permission notice shall be included in all copies or
- *    substantial portions of the Software.
- *
- *    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
- *    EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
- *    OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
- *    NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
- *    HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
- *    WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
- *    FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
- *    OTHER DEALINGS IN THE SOFTWARE.
- */
-
 #include <LedControl.h>
 #include <Petduino.h>
 
@@ -72,7 +46,7 @@ void setup() {
 
   // Set initial state
   pet.setState(DEFAULT_STATE);
-
+  
   // Initialize random seed
   randomSeed(analogRead(0));
 
@@ -96,14 +70,14 @@ void loop() {
   switch(pet.getState()){
 
     case DEFAULT_STATE:
-      if (random(0, 5) == 0) {
+      if (random(0, 5) == 0) { 
         pet.setNextState(BLINK_ANIM_STATE, 500); // Randomly blink
       } else {
         drawEye();
         pet.setNextState(PUPIL_ANIM_STATE, random(5, 7) * 500); // Move pupil
       }
       break;
-
+      
     case PUPIL_ANIM_STATE:
       // Choose random pupil position
       targetPupilX = random(PUPIL_MIN_OFFSET, PUPIL_MAX_OFFSET + 1);
@@ -118,13 +92,13 @@ void loop() {
         pet.setState(DEFAULT_STATE);
       }
       break;
-
+      
     case BLINK_ANIM_STATE:
       blinkState = 0;
       // Don't break so we fall throuh to first loop straight away
     case BLINK_ANIM_CLOSE_LOOP_STATE:
       if(blinkState < 4) {
-        updateEyeAnim();
+        updateBlinkAnim();
         blinkState++;
         pet.setNextState(BLINK_ANIM_CLOSE_LOOP_STATE, BLINK_SPEED);
       } else {
@@ -134,19 +108,19 @@ void loop() {
     case BLINK_ANIM_OPEN_LOOP_STATE:
       if(blinkState > 0) {
         blinkState--;
-        updateEyeAnim();
+        updateBlinkAnim();
         pet.setNextState(BLINK_ANIM_OPEN_LOOP_STATE, BLINK_SPEED);
       } else {
         drawEye();
         pet.setState(DEFAULT_STATE);
       }
       break;
-
+      
     case HORIZONTAL_SPIN_STATE:
       horizontalSpin();
       pet.setNextState(DEFAULT_STATE, 1000);
       break;
-
+      
     case ROUND_SPIN_STATE:
       roundSpin();
       pet.setNextState(DEFAULT_STATE, 1000);
@@ -157,25 +131,25 @@ void loop() {
 
 // Spin the eye around in a circle [BLOCKING]
 void roundSpin() {
-
+  
   // Force eye open
   while(blinkState > 0) {
     blinkState--;
-    updateEyeAnim();
+    updateBlinkAnim();
     delay(BLINK_SPEED);
   }
-
+  
   // Position the pupil
   targetPupilX = 2;
   targetPupilY = 0;
-
+  
   while(currentPupilX != targetPupilX || currentPupilY != targetPupilY) {
      updatePupilAnim();
      delay(PUPIL_SPEED);
   }
-
+  
   delay(200);
-
+  
   // Perform spin
   for (int t=0; t<SPIN_COUNT; t++)
   {
@@ -196,25 +170,25 @@ void roundSpin() {
 
 // Spin eye horizontally [BLOCKING]
 void horizontalSpin() {
-
+ 
   // Force eye open
   while(blinkState > 0) {
     blinkState--;
-    updateEyeAnim();
+    updateBlinkAnim();
     delay(BLINK_SPEED);
   }
-
+  
   // Position the pupil
   targetPupilX = 0;
   targetPupilY = 0;
-
+  
   while(currentPupilX != targetPupilX || currentPupilY != targetPupilY) {
      updatePupilAnim();
      delay(PUPIL_SPEED);
   }
-
+  
   delay(200);
-
+  
   // Perform the spin
   for (int t=0; t<SPIN_COUNT; t++)
   {
@@ -223,9 +197,9 @@ void horizontalSpin() {
       drawEye();
       delay(SPIN_SPEED);
     }
-
+    
     currentPupilX = 4;
-
+    
     while(currentPupilX > 0){
       currentPupilX--;
       drawEye();
@@ -235,19 +209,19 @@ void horizontalSpin() {
 }
 
 // Redraw blinking eye
-void updateEyeAnim() {
+void updateBlinkAnim() {
   for(int b=0; b<8; b++){
     if(b <= blinkState || b >= 7-blinkState){
-      pet.drawRow(b, B00000000);
+      pet.drawRow(b, B00000000); 
     } else {
-      drawEyeRow(b, eye[b]);
+      drawEyeRow(b, eye[b]); 
     }
   }
 }
 
 // Calculate and apply next anim step
 void updatePupilAnim() {
-
+  
   // Calculate number of steps needed
   int stepsX = abs(currentPupilX - targetPupilX);
   int stepsY = abs(currentPupilY - targetPupilY);
@@ -255,7 +229,7 @@ void updatePupilAnim() {
   // Make sure we have at least 1 step
   if ((stepsX == 0) && (stepsY == 0))
     return;
-
+    
   // Calculate max steps
   int dirX = (targetPupilX >= currentPupilX) ? 1 : -1;
   int dirY = (targetPupilY >= currentPupilY) ? 1 : -1;
@@ -264,14 +238,14 @@ void updatePupilAnim() {
   // Calculate next step
   float changeX = (float)stepsX / (float)steps;
   float changeY = (float)stepsY / (float)steps;
-
+  
   // Apply next step
   int newX = limitPupilOffset(currentPupilX + round(changeX * dirX));
   int newY = limitPupilOffset(currentPupilY + round(changeY * dirY));
-
+  
   // Redraw eye
   moveEye(newX, newY);
-
+  
 }
 
 // Move the eye to a specific offset
@@ -290,11 +264,11 @@ void drawEye() {
 
 // Draw eye row merging in the current pupil
 void drawEyeRow(int r, byte value) {
-
+  
   // Calculate indexes for pupil rows (perform offset Y)
   int row1 = 3 - currentPupilY;
   int row2 = 4 - currentPupilY;
-
+  
   if(r == row1 || r == row2){
     if(currentPupilX >= 0){
       pet.drawRow(r, value ^ (pupil >> currentPupilX));

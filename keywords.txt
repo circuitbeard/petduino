@@ -17,7 +17,6 @@ update	KEYWORD2
 setLed	KEYWORD2
 toggleLed	KEYWORD2
 getTemperature	KEYWORD2
-setRow	KEYWORD2
 getLightLevel	KEYWORD2
 isBtn1Pressed	KEYWORD2
 isBtn1Held	KEYWORD2
@@ -28,6 +27,7 @@ playMelody	KEYWORD2
 stopTone	KEYWORD2
 fillScreen	KEYWORD2
 clearScreen	KEYWORD2
+drawRow	KEYWORD2
 drawImage	KEYWORD2
 playAnimation	KEYWORD2
 stopAnimation	KEYWORD2

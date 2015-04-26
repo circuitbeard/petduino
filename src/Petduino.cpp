@@ -75,13 +75,6 @@ void Petduino::update() {
 
 // Private ===========================================
 
-// Draw a row to the display
-void Petduino::drawRow(int row, byte rowValue) {
-  // Because the screen is rotated, fill the oposite row and use setColumn not setRow
-  row = abs(row - 7);
-  lc.setColumn(0, row, rowValue);
-}
-
 // Check to see if the state timer has expired and thus a change of state needs to occur
 bool Petduino::stateIntervalExpired() {
   if (stateInterval > 0 && millis() - stateTimestamp >= stateInterval) {
@@ -259,6 +252,13 @@ void Petduino::fillScreen() {
 // Turns off all pixels on the screen
 void Petduino::clearScreen() {
   lc.clearDisplay(0);
+}
+
+// Draw a row to the display
+void Petduino::drawRow(int row, byte val) {
+  // Because the screen is rotated, fill the oposite row and use setColumn not setRow
+  row = abs(row - 7);
+  lc.setColumn(0, row, val);
 }
 
 // Draw an image to the screen

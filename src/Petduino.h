@@ -81,7 +81,6 @@ class Petduino {
       unsigned long stateInterval;
 
       // Methods
-      void drawRow(int row, byte rowValue);
       bool stateIntervalExpired();
       bool debounce(uint8_t pin, int &state, int &lastState, unsigned long &debounceTimestamp);
 
@@ -116,6 +115,7 @@ class Petduino {
 
       void fillScreen();
       void clearScreen();
+      void drawRow(int row, byte val);
       void drawImage(byte img[]);
       void playAnimation(byte frames[][8], unsigned long frameDurations[], unsigned long length, unsigned long loopCount);
       void stopAnimation();

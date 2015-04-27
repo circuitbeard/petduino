@@ -39,6 +39,7 @@ To explore all the things you can do with your Petduino, checkout the various ex
 
 ## Examples
 | **AlienDelay** | Basic example to show rendering graphics to the display and playing simple tones. |
+| -------------- | --------------------------------------------------------------------------------- |
 | **AlienState** | The same as the AlienDelay example, however this time showing the use of Petduinos state manager to create not blocking animations. |
 
 ###ButtonExample

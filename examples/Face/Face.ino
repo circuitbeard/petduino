@@ -95,7 +95,7 @@ byte faceSpeakF[FACE_SPEAK_FRAMES][8]= {
 unsigned long faceSpeakD[FACE_SPEAK_FRAMES] = { 100, 100, 100, 100 };
 
 #define FACE_SPEAK_TONES 11
-unsigned int faceSpeakToneF[FACE_SPEAK_TONES] = { 100, 200, 70, 150, 250, 50, 300, 220, 400, 100, 50 };
+unsigned int faceSpeakToneF[FACE_SPEAK_TONES] = { 50, 100, 400, 220, 300, 50, 250, 150, 70, 200, 100 };
 unsigned long faceSpeakToneD[FACE_SPEAK_TONES] = { 20, 50, 20, 10, 100, 50, 40, 20, 80, 20, 30 };
 
 #define FACE_LOOK_FRAMES 4

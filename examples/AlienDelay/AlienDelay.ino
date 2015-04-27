@@ -60,8 +60,8 @@ void setup() {
 
 void loop() {
 
-  // Call pet loop
-  pet.loop();
+  // Update pet
+  pet.update();
 
   // Alien1
   pet.drawImage(alien1);

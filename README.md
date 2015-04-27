@@ -26,8 +26,8 @@ Every Petduino project starts with the same basic structure.
 
     void loop() {
 
-      // Call pet loop
-      pet.loop();
+      // Update pet
+      pet.update();
 
       // Do your thing...
 

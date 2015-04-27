@@ -84,7 +84,7 @@ byte catSpeakF[CAT_SPEAK_FRAMES][8]= {
 };
 unsigned long catSpeakD[CAT_SPEAK_FRAMES] = { 100, 900, 100 };
 
-#define CAT_SPEAK_TONES 11
+#define CAT_SPEAK_TONES 4
 unsigned int catSpeakToneF[CAT_SPEAK_TONES] = { 400, 200, 100, 50 };
 unsigned long catSpeakToneD[CAT_SPEAK_TONES] = { 100, 100, 100, 700 };
 

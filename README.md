@@ -42,24 +42,12 @@ To explore all the things you can do with your Petduino, checkout the various ex
 | ------- | ----------- |
 | **AlienDelay** | Basic example to show rendering graphics to the display and playing simple tones. |
 | **AlienState** | The same as the AlienDelay example, however this time showing the use of Petduinos state manager to create not blocking animations. |
-
-###ButtonExample
-Example project showing how to interact with the Petduinos buttons.
-
-###LdrExample
-Example of reading the Petduinos light level (LDR) sensor.
-
-###TemperatureExample
-Example of how to read the temperature from your Petduino.
-
-###ScrollingText
-Example of how to turn your Petduino into a scrolling text display.
-
-###TheEye
-Aadvanced example showing how to render dynamic grphics to the Petduinos display.
-
-###Animals
-A collection of simple animal face examples to give your Petduino instant personality. Incorporating animations, sounds and button inteactions.
+| **ButtonExample** | Example project showing how to interact with the Petduinos buttons.  |
+| **LdrExample** | Example of reading the Petduinos light level (LDR) sensor. |
+| **TemperatureExample** | Example of how to read the temperature from your Petduino. |
+| **ScrollingText** | Example of how to turn your Petduino into a scrolling text display. |
+| **TheEye** | Aadvanced example showing how to render dynamic grphics to the Petduinos display. |
+| **Animals** | A collection of simple animal face examples to give your Petduino instant personality. Incorporating animations, sounds and button inteactions. |
 
 ## Contributing
 TODO

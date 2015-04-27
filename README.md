@@ -38,8 +38,8 @@ From here Petduino exposes a number of methods to help you handle interactions f
 To explore all the things you can do with your Petduino, checkout the various examples in the [examples folder](https://github.com/circuitbeard/petduino/tree/master/examples).
 
 ## Examples
-__AlienDelay__|Basic example to show rendering graphics to the display and playing simple tones.
-__AlienState__|The same as the AlienDelay example, however this time showing the use of Petduinos state manager to create not blocking animations.
+    __AlienDelay__|Basic example to show rendering graphics to the display and playing simple tones.
+    __AlienState__|The same as the AlienDelay example, however this time showing the use of Petduinos state manager to create not blocking animations.
 
 ###ButtonExample
 Example project showing how to interact with the Petduinos buttons.

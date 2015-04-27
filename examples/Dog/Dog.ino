@@ -1,5 +1,5 @@
 /*
- *    Face.ino - Face example using state and the Petduino library
+ *    Dog.ino - Dog example using state and the Petduino library
  *    Copyright (c) 2015 Circuitbeard
  *
  *    Permission is hereby granted, free of charge, to any person
@@ -27,7 +27,7 @@
 #include <LedControl.h>
 #include <Petduino.h>
 
-byte face[8]={
+byte dog[8]={
   B00000000,
   B01000100,
   B01100110,
@@ -38,7 +38,7 @@ byte face[8]={
   B01111110
 };
 
-byte faceBlink[8]={
+byte dogBlink[8]={
   B00000000,
   B00000000,
   B01100110,
@@ -49,8 +49,8 @@ byte faceBlink[8]={
   B01111110
 };
 
-#define FACE_SPEAK_FRAMES 4
-byte faceSpeakF[FACE_SPEAK_FRAMES][8]= {
+#define DOG_SPEAK_FRAMES 4
+byte dogSpeakF[DOG_SPEAK_FRAMES][8]= {
   {
     B00000000,
     B01000100,
@@ -92,14 +92,14 @@ byte faceSpeakF[FACE_SPEAK_FRAMES][8]= {
     B01111110
   }
 };
-unsigned long faceSpeakD[FACE_SPEAK_FRAMES] = { 100, 100, 100, 100 };
+unsigned long dogSpeakD[DOG_SPEAK_FRAMES] = { 100, 100, 100, 100 };
 
-#define FACE_SPEAK_TONES 11
-unsigned int faceSpeakToneF[FACE_SPEAK_TONES] = { 50, 100, 400, 220, 300, 50, 250, 150, 70, 200, 100 };
-unsigned long faceSpeakToneD[FACE_SPEAK_TONES] = { 20, 50, 20, 10, 100, 50, 40, 20, 80, 20, 30 };
+#define DOG_SPEAK_TONES 11
+unsigned int dogSpeakToneF[DOG_SPEAK_TONES] = { 50, 100, 400, 220, 300, 50, 250, 150, 70, 200, 100 };
+unsigned long dogSpeakToneD[DOG_SPEAK_TONES] = { 20, 50, 20, 10, 100, 50, 40, 20, 80, 20, 30 };
 
-#define FACE_LOOK_FRAMES 4
-byte faceLookF[FACE_LOOK_FRAMES][8]= {
+#define DOG_LOOK_FRAMES 4
+byte dogLookF[DOG_LOOK_FRAMES][8]= {
   {
     B00000000,
     B00100010,
@@ -141,7 +141,7 @@ byte faceLookF[FACE_LOOK_FRAMES][8]= {
     B01111110
   }
 };
-unsigned long faceLookD[FACE_LOOK_FRAMES] = { 100, 100, 100, 100 };
+unsigned long dogLookD[DOG_LOOK_FRAMES] = { 100, 100, 100, 100 };
 
 #define DEFAULT_STATE 0
 #define BLINK_STATE 1
@@ -157,7 +157,7 @@ void setup() {
 
   // Set initial state
   pet.setState(DEFAULT_STATE);
-  
+
   // Initialize random seed
   randomSeed(analogRead(0));
 
@@ -167,7 +167,7 @@ void loop() {
 
   // Update pet
   pet.update();
-  
+
   // Check buttons
   if(pet.isBtn1Pressed()){
     pet.setState(LOOK_STATE);
@@ -181,31 +181,31 @@ void loop() {
   switch(pet.getState()){
 
     case DEFAULT_STATE:
-      if (random(0, 5) == 0) { 
+      if (random(0, 5) == 0) {
         pet.setState(BLINK_STATE); // Random blink
       } else if(random(0, 10) == 0) {
         pet.setState(SPEAK_STATE); // Random speak
       } else if(random(0, 5) == 0) {
         pet.setState(LOOK_STATE); // Random look
       } else {
-        pet.drawImage(face);
+        pet.drawImage(dog);
         pet.setNextState(DEFAULT_STATE, 3000);
       }
       break;
-      
+
     case BLINK_STATE:
-      pet.drawImage(faceBlink);
+      pet.drawImage(dogBlink);
       pet.setNextState(DEFAULT_STATE, 100);
       break;
-      
+
     case LOOK_STATE:
-      pet.playAnimation(faceLookF, faceLookD, FACE_LOOK_FRAMES, 2);
+      pet.playAnimation(dogLookF, dogLookD, DOG_LOOK_FRAMES, 2);
       pet.setNextState(DEFAULT_STATE, 2000);
       break;
-      
+
     case SPEAK_STATE:
-      pet.playAnimation(faceSpeakF, faceSpeakD, FACE_SPEAK_FRAMES, 4);
-      pet.playMelody(faceSpeakToneF, faceSpeakToneD, FACE_SPEAK_TONES, 3);
+      pet.playAnimation(dogSpeakF, dogSpeakD, DOG_SPEAK_FRAMES, 4);
+      pet.playMelody(dogSpeakToneF, dogSpeakToneD, DOG_SPEAK_TONES, 3);
       pet.setNextState(DEFAULT_STATE, 2000);
       break;
   }

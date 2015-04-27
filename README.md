@@ -9,5 +9,33 @@ Provides a collection of helper methods for creating animations, melodies and in
 5. Download this library using this link (TBC).
 6. Install this library using [the standard Arduino library install procedure](http://www.arduino.cc/en/Guide/Libraries#.UwxndHX5PtY).
 
-## Documentation
+## Getting Started
+Every Petduino project starts with the same basic structure.
+
+    #include <LedControl.h>
+    #include <Petduino.h>
+
+    Petduino pet = Petduino();
+
+    void setup() {
+
+      // Setup Petduino
+      pet.begin();
+
+    }
+
+    void loop() {
+
+      // Call pet loop
+      pet.loop();
+
+      // Do your thing...
+
+    }
+
+From here Petduino exposes a number of methods to help you handle interactions from your Petduinos various inputs aswell as methods to help you draw graphics to the Petduinos display.
+
+To explore all the things you can do with your Petduino, checkout the various examples in the examples folder.
+
+## Examples
 TODO

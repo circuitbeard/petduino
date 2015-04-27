@@ -38,5 +38,5 @@ From here Petduino exposes a number of methods to help you handle interactions f
 To explore all the things you can do with your Petduino, checkout the various examples in the [examples folder](https://github.com/circuitbeard/petduino/tree/master/examples).
 
 ## Examples
-1. ###AlienDelay
-   Something
+###AlienDelay  
+Something

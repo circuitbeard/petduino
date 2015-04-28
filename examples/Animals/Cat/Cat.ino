@@ -30,8 +30,8 @@
 byte cat[8]={
   B00000000,
   B01100110,
+  B01100110,
   B01000010,
-  B00000000,
   B10111101,
   B00011000,
   B01000010,
@@ -54,8 +54,8 @@ byte catSpeakF[CAT_SPEAK_FRAMES][8]= {
   {
     B00000000,
     B01100110,
+    B01100110,
     B01000010,
-    B00000000,
     B10111101,
     B00011000,
     B01111110,
@@ -64,8 +64,8 @@ byte catSpeakF[CAT_SPEAK_FRAMES][8]= {
   {
     B00000000,
     B01100110,
+    B01100110,
     B01000010,
-    B00000000,
     B10111101,
     B00011000,
     B01011010,
@@ -74,8 +74,8 @@ byte catSpeakF[CAT_SPEAK_FRAMES][8]= {
   {
     B00000000,
     B01100110,
+    B01100110,
     B01000010,
-    B00000000,
     B10111101,
     B00011000,
     B01000010,
@@ -88,13 +88,23 @@ unsigned long catSpeakD[CAT_SPEAK_FRAMES] = { 100, 900, 100 };
 unsigned int catSpeakToneF[CAT_SPEAK_TONES] = { 400, 200, 100, 50 };
 unsigned long catSpeakToneD[CAT_SPEAK_TONES] = { 100, 100, 100, 700 };
 
-#define CAT_LOOK_FRAMES 4
+#define CAT_LOOK_FRAMES 6
 byte catLookF[CAT_LOOK_FRAMES][8]= {
   {
     B00000000,
+    B01100110,
     B01000010,
     B01100110,
+    B10111101,
+    B00011000,
+    B01000010,
+    B00111100
+  },
+  {
     B00000000,
+    B01000010,
+    B01100110,
+    B01100110,
     B10111101,
     B00011000,
     B01000010,
@@ -104,7 +114,7 @@ byte catLookF[CAT_LOOK_FRAMES][8]= {
     B00000000,
     B00100100,
     B01100110,
-    B00000000,
+    B01100110,
     B10111101,
     B00011000,
     B01000010,
@@ -114,7 +124,7 @@ byte catLookF[CAT_LOOK_FRAMES][8]= {
     B00000000,
     B01100110,
     B00100100,
-    B00000000,
+    B01100110,
     B10111101,
     B00011000,
     B01000010,
@@ -123,15 +133,25 @@ byte catLookF[CAT_LOOK_FRAMES][8]= {
   {
     B00000000,
     B01100110,
+    B01100110,
+    B00100100,
+    B10111101,
+    B00011000,
     B01000010,
+    B00111100
+  },
+  {
     B00000000,
+    B01100110,
+    B01100110,
+    B01000010,
     B10111101,
     B00011000,
     B01000010,
     B00111100
   }
 };
-unsigned long catLookD[CAT_LOOK_FRAMES] = { 100, 100, 100, 100 };
+unsigned long catLookD[CAT_LOOK_FRAMES] = { 100, 100, 100, 100, 100, 100 };
 
 #define DEFAULT_STATE 0
 #define BLINK_STATE 1

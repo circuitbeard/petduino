@@ -30,8 +30,8 @@
 byte dog[8]={
   B00000000,
   B01100110,
+  B01100110,
   B01000010,
-  B00000000,
   B01111110,
   B00111100,
   B10000001,
@@ -54,8 +54,8 @@ byte dogSpeakF[DOG_SPEAK_FRAMES][8]= {
   {
     B00000000,
     B01100110,
+    B01100110,
     B01000010,
-    B00000000,
     B01111110,
     B00111100,
     B10011001,
@@ -64,8 +64,8 @@ byte dogSpeakF[DOG_SPEAK_FRAMES][8]= {
   {
     B00000000,
     B01100110,
+    B01100110,
     B01000010,
-    B00000000,
     B01111110,
     B00111100,
     B11111111,
@@ -74,8 +74,8 @@ byte dogSpeakF[DOG_SPEAK_FRAMES][8]= {
   {
     B00000000,
     B01100110,
+    B01100110,
     B01000010,
-    B00000000,
     B01111110,
     B00111100,
     B10011001,
@@ -84,8 +84,8 @@ byte dogSpeakF[DOG_SPEAK_FRAMES][8]= {
   {
     B00000000,
     B01100110,
+    B01100110,
     B01000010,
-    B00000000,
     B01111110,
     B00111100,
     B10000001,
@@ -98,13 +98,23 @@ unsigned long dogSpeakD[DOG_SPEAK_FRAMES] = { 100, 100, 100, 100 };
 unsigned int dogSpeakToneF[DOG_SPEAK_TONES] = { 50, 100, 400, 220, 300, 50, 250, 150, 70, 200, 100 };
 unsigned long dogSpeakToneD[DOG_SPEAK_TONES] = { 20, 50, 20, 10, 100, 50, 40, 20, 80, 20, 30 };
 
-#define DOG_LOOK_FRAMES 4
+#define DOG_LOOK_FRAMES 6
 byte dogLookF[DOG_LOOK_FRAMES][8]= {
   {
     B00000000,
+    B01100110,
     B01000010,
     B01100110,
+    B01111110,
+    B00111100,
+    B10000001,
+    B01111110
+  },
+  {
     B00000000,
+    B01000010,
+    B01100110,
+    B01100110,
     B01111110,
     B00111100,
     B10000001,
@@ -114,7 +124,7 @@ byte dogLookF[DOG_LOOK_FRAMES][8]= {
     B00000000,
     B00100100,
     B01100110,
-    B00000000,
+    B01100110,
     B01111110,
     B00111100,
     B10000001,
@@ -124,7 +134,7 @@ byte dogLookF[DOG_LOOK_FRAMES][8]= {
     B00000000,
     B01100110,
     B00100100,
-    B00000000,
+    B01100110,
     B01111110,
     B00111100,
     B10000001,
@@ -133,15 +143,25 @@ byte dogLookF[DOG_LOOK_FRAMES][8]= {
   {
     B00000000,
     B01100110,
-    B01000010,
+    B01100110,
+    B00100100,
+    B01111110,
+    B00111100,
+    B10000001,
+    B01111110
+  },
+  {
     B00000000,
+    B01100110,
+    B01100110,
+    B01000010,
     B01111110,
     B00111100,
     B10000001,
     B01111110
   }
 };
-unsigned long dogLookD[DOG_LOOK_FRAMES] = { 100, 100, 100, 100 };
+unsigned long dogLookD[DOG_LOOK_FRAMES] = { 100, 100, 100, 100, 100, 100 };
 
 #define DEFAULT_STATE 0
 #define BLINK_STATE 1

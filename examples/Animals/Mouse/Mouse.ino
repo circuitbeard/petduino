@@ -30,8 +30,8 @@
 byte mouse[8]={
   B00000000,
   B01100110,
+  B01100110,
   B01000010,
-  B00000000,
   B10011001,
   B01011010,
   B10000001,
@@ -54,8 +54,8 @@ byte mouseSpeakF[MOUSE_SPEAK_FRAMES][8]= {
   {
     B00000000,
     B01100110,
+    B01100110,
     B01000010,
-    B00000000,
     B10011001,
     B01011010,
     B10000001,
@@ -64,8 +64,8 @@ byte mouseSpeakF[MOUSE_SPEAK_FRAMES][8]= {
   {
     B00000000,
     B01100110,
+    B01100110,
     B01000010,
-    B00000000,
     B10011001,
     B01011010,
     B10000001,
@@ -78,13 +78,23 @@ unsigned long mouseSpeakD[MOUSE_SPEAK_FRAMES] = { 200, 200 };
 unsigned int mouseSpeakToneF[MOUSE_SPEAK_TONES] = { 1800, 0 };
 unsigned long mouseSpeakToneD[MOUSE_SPEAK_TONES] = { 200, 200 };
 
-#define MOUSE_LOOK_FRAMES 4
+#define MOUSE_LOOK_FRAMES 6
 byte mouseLookF[MOUSE_LOOK_FRAMES][8]= {
   {
     B00000000,
+    B01100110,
     B01000010,
     B01100110,
+    B10011001,
+    B01011010,
+    B10000001,
+    B00011000
+  },
+  {
     B00000000,
+    B01000010,
+    B01100110,
+    B01100110,
     B10011001,
     B01011010,
     B10000001,
@@ -94,7 +104,7 @@ byte mouseLookF[MOUSE_LOOK_FRAMES][8]= {
     B00000000,
     B00100100,
     B01100110,
-    B00000000,
+    B01100110,
     B10011001,
     B01011010,
     B10000001,
@@ -104,7 +114,7 @@ byte mouseLookF[MOUSE_LOOK_FRAMES][8]= {
     B00000000,
     B01100110,
     B00100100,
-    B00000000,
+    B01100110,
     B10011001,
     B01011010,
     B10000001,
@@ -113,15 +123,25 @@ byte mouseLookF[MOUSE_LOOK_FRAMES][8]= {
   {
     B00000000,
     B01100110,
-    B01000010,
+    B01100110,
+    B00100100,
+    B10011001,
+    B01011010,
+    B10000001,
+    B00011000
+  },
+  {
     B00000000,
+    B01100110,
+    B01100110,
+    B01000010,
     B10011001,
     B01011010,
     B10000001,
     B00011000
   }
 };
-unsigned long mouseLookD[MOUSE_LOOK_FRAMES] = { 100, 100, 100, 100 };
+unsigned long mouseLookD[MOUSE_LOOK_FRAMES] = { 100, 100, 100, 100, 100, 100 };
 
 #define DEFAULT_STATE 0
 #define BLINK_STATE 1

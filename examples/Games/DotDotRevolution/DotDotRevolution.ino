@@ -290,10 +290,12 @@ void loop() {
       score = 0;
       lives = 6;
       gameStarted = true;
+      btn1Pressed = false;
+      btn2Pressed = false;
       
       // Reset board
       for(int i=0; i<8; i++){
-        gameBoard[i] == gameBoard[i] & middleMask;
+        gameBoard[i] = gameBoard[i] & middleMask;
       }
       
       // Start game

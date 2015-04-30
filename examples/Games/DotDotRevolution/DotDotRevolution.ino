@@ -362,7 +362,6 @@ void loop() {
       btn2Pressed = false;
       
       // Increase speed as score goes up
-      
       if(score > 70) {
         speed = 300;
       } else if(score > 60) {
@@ -401,11 +400,11 @@ void loop() {
       // Stop the game
       gameStarted = false;
       
-      // Split the digits
+      // Split the score digits
       scoreTens = score/10;
       scoreOnes = score-scoreTens*10;
     
-      // Generate & draw number graphic
+      // Generate & draw score number graphic
       for(int b = 0; b < 8; b++){
         pet.drawRow(b, numbers[scoreTens][b] | numbers[scoreOnes][b] >> 4);
       }

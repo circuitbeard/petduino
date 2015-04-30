@@ -223,8 +223,8 @@ long nextMove;
 bool gameStarted = false;
 bool btn1Pressed = false;
 bool btn2Pressed = false;
-unsigned long speed;
 
+unsigned long speed;
 unsigned int scoreOnes;
 unsigned int scoreTens;
 
@@ -329,63 +329,64 @@ void loop() {
           }
       }
       
-      // Shift items down
-      for(int i = 7; i>=1; --i){
-        prevRowMask = gameBoard[i-1] & leftAndRightMask;
-        gameBoard[i] = gameBoard[i] & middleMask;
-        gameBoard[i] = gameBoard[i] | prevRowMask;
-      }
-      
-      // Choose next move
-      gameBoard[0] = gameBoard[0] & middleMask;
-
-      nextMove = random(0, 6); 
-      if(nextMove == 1) {
-        gameBoard[0] = gameBoard[0] | leftMask;
-      } else if(nextMove == 2) {
-        gameBoard[0] = gameBoard[0] | rightMask;
-      } else if(nextMove == 3) {
-        gameBoard[0] = gameBoard[0] | leftAndRightMask;
-      }
-      
-      // Update lives
-      for(int i=5; i>=0; --i){
-        if(i+1 > lives){
-          gameBoard[5-i] = gameBoard[5-i] & leftAndRightMask;
-        } else {
-          gameBoard[5-i] = gameBoard[5-i] | middleMask;
-        }
-      }
-    
-      // Reset button presses
-      btn1Pressed = false;
-      btn2Pressed = false;
-      
-      // Increase speed as score goes up
-      if(score > 70) {
-        speed = 300;
-      } else if(score > 60) {
-        speed = 350;
-      } else if(score > 50) {
-        speed = 400;
-      } else if(score > 40) {
-        speed = 450;
-      } else if(score > 30) {
-        speed = 500;
-      } else if(score > 20) {
-        speed = 550;
-      } else if(score > 10) {
-        speed = 600;
-      } else {
-        speed = 700; 
-      }
-      
-      // Check for game over
+      // Check to see if we've used up all our lives
       if(lives <= 0) {
         
+        // No lives left, go to game over screen
         pet.setState(GAME_OVER_STATE);
         
       } else {
+      
+        // Shift items down
+        for(int i = 7; i>=1; --i){
+          prevRowMask = gameBoard[i-1] & leftAndRightMask;
+          gameBoard[i] = gameBoard[i] & middleMask;
+          gameBoard[i] = gameBoard[i] | prevRowMask;
+        }
+        
+        // Choose next move
+        gameBoard[0] = gameBoard[0] & middleMask;
+  
+        nextMove = random(0, 6); 
+        if(nextMove == 1) {
+          gameBoard[0] = gameBoard[0] | leftMask;
+        } else if(nextMove == 2) {
+          gameBoard[0] = gameBoard[0] | rightMask;
+        } else if(nextMove == 3) {
+          gameBoard[0] = gameBoard[0] | leftAndRightMask;
+        }
+        
+        // Update lives display
+        for(int i=5; i>=0; --i){
+          if(i+1 > lives){
+            gameBoard[5-i] = gameBoard[5-i] & leftAndRightMask;
+          } else {
+            gameBoard[5-i] = gameBoard[5-i] | middleMask;
+          }
+        }
+      
+        // Reset button presses
+        btn1Pressed = false;
+        btn2Pressed = false;
+        
+        // Increase speed as score goes up
+        if(score > 70) {
+          speed = 300;
+        } else if(score > 60) {
+          speed = 350;
+        } else if(score > 50) {
+          speed = 400;
+        } else if(score > 40) {
+          speed = 450;
+        } else if(score > 30) {
+          speed = 500;
+        } else if(score > 20) {
+          speed = 550;
+        } else if(score > 10) {
+          speed = 600;
+        } else {
+          speed = 700; 
+        }
         
         // Draw the board and loop
         pet.drawImage(gameBoard);

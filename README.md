@@ -48,6 +48,7 @@ To explore all the things you can do with your Petduino, checkout the various ex
 | **ScrollingText** | Example of how to turn your Petduino into a scrolling text display. |
 | **TheEye** | Aadvanced example showing how to render dynamic grphics to the Petduinos display. |
 | **Animals** | A collection of simple animal face examples to give your Petduino instant personality. Incorporating animations, sounds and button inteactions. |
+| **Games** | A collection of games to show how you can do more with your Petduino than just animations. |
 
 ## Contributing
 TODO

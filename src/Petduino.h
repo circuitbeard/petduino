@@ -113,6 +113,7 @@ class Petduino {
       void playMelody(unsigned int frequencies[], unsigned long durations[], unsigned long length, unsigned long loopCount);
       void stopTone();
 
+      void setScreenBrightness(unsigned int level);
       void fillScreen();
       void clearScreen();
       void drawRow(int row, byte val);

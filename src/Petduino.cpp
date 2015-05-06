@@ -240,6 +240,11 @@ void Petduino::stopTone() {
   delay(5);
 }
 
+// Sets the brightness of the screen from 0 to 8
+void Petduino::setScreenBrightness(unsigned int level) {
+  lc.setIntensity(0, level);
+}
+
 // Turns on all pixels on the screen
 void Petduino::fillScreen() {
   byte b = B11111111;

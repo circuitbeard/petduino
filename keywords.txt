@@ -25,6 +25,7 @@ isBtn2Held	KEYWORD2
 playTone	KEYWORD2
 playMelody	KEYWORD2
 stopTone	KEYWORD2
+setScreenBrightness KEYWORD2
 fillScreen	KEYWORD2
 clearScreen	KEYWORD2
 drawRow	KEYWORD2

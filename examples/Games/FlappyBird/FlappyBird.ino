@@ -27,30 +27,50 @@
 #include <LedControl.h>
 #include <Petduino.h>
 
-#define INTRO_ANIM_FRAMES 2
+#define INTRO_ANIM_FRAMES 4
 byte introF[INTRO_ANIM_FRAMES][8]={
   {
-    B00011000,
-    B00100100,
-    B00101100,
-    B11100100,
-    B10001110,
-    B10010001,
-    B01001110,
+    B00001100,
+    B00010010,
+    B00010110,
+    B11110111,
+    B10010010,
+    B10000010,
+    B01100100,
     B00111000
   },
   {
-    B00011000,
-    B00100100,
-    B00101100,
-    B00100100,
-    B01001110,
-    B10010001,
-    B10101110,
+    B00001100,
+    B00010010,
+    B00010110,
+    B00010111,
+    B01110010,
+    B10000010,
+    B10010100,
+    B11111000
+  },
+  {
+    B00001100,
+    B00010010,
+    B00010110,
+    B11110111,
+    B10010010,
+    B10000010,
+    B01100100,
+    B00111000
+  },
+  {
+    B00001100,
+    B00010010,
+    B00010010,
+    B00010111,
+    B01110010,
+    B10000010,
+    B10010100,
     B11111000
   }
 };
-unsigned long introD[INTRO_ANIM_FRAMES] = { 500, 500 };
+unsigned long introD[INTRO_ANIM_FRAMES] = { 400, 400, 400, 400 };
 
 #define NUMBER_COUNT 10
 byte numbers[NUMBER_COUNT][8] = {
@@ -143,7 +163,7 @@ void loop() {
     
       // Show intro anim
       pet.playAnimation(introF, introD, INTRO_ANIM_FRAMES, 1);
-      pet.setNextState(INTRO_STATE, 1000); // Wait for button press
+      pet.setNextState(INTRO_STATE, 1600); // Wait for button press
       
       break;
       

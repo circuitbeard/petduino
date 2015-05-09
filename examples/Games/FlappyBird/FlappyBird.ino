@@ -296,12 +296,15 @@ void loop() {
       }
       
       // Detect collision with either pipe
-      if((pipe1X == 1 && pipe1 & (0x80 >> wingY)) || (pipe1X == 2 && pipe1 & (0x80 >> birdY)) ) {
+      // NB: No need to check for wing, collision as it's 
+      // always one move behind the bird, so if the bird 
+      // makes it, the wing is guaranteed to make it
+      if(pipe1X == 2 && pipe1 & (0x80 >> birdY) ) {
          pet.setState(GAME_OVER_STATE);
          break;    
       }
       
-      if((pipe2X == 1 && pipe2 & (0x80 >> wingY)) || (pipe2X == 2 && pipe2 & (0x80 >> birdY)) ) {
+      if(pipe2X == 2 && pipe2 & (0x80 >> birdY) ) {
          pet.setState(GAME_OVER_STATE);
          break;    
       }

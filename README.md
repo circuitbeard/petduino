@@ -49,6 +49,7 @@ To explore all the things you can do with your Petduino, checkout the various ex
 | **TheEye** | Aadvanced example showing how to render dynamic grphics to the Petduinos display. |
 | **Pets** | A collection of simple pet face to give your Petduino instant personality and a starting point to add your own stamp. Incorporating animations, sounds and button inteactions. |
 | **Games** | A collection of games to show how you can do more with your Petduino than just animations. |
+| **Instruments** | A collection of musical instrument examples for the Petduino. |
 
 ## Contributing
 TODO

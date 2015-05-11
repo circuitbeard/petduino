@@ -237,7 +237,6 @@ void Petduino::stopTone() {
   melodyIdx = 0;
   melodyLoopCounter = 0;
   noTone(BUZZER);
-  delay(5);
 }
 
 // Sets the brightness of the screen from 0 to 8

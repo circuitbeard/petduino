@@ -60,7 +60,7 @@ void setup() {
   pet.begin();
 
   // Set initial state
-  pet.setState(ALIEN1STATE);
+  pet.setState(ALIEN1_STATE);
 
 }
 

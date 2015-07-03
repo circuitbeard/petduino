@@ -16,6 +16,7 @@ begin	KEYWORD2
 update	KEYWORD2
 setLed	KEYWORD2
 toggleLed	KEYWORD2
+getLed KEYWORD2
 getTemperature	KEYWORD2
 getLightLevel	KEYWORD2
 isBtn1Pressed	KEYWORD2

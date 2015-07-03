@@ -100,6 +100,7 @@ class Petduino {
 
       void setLed(bool value);
       void toggleLed();
+      bool getLed();
 
       float getTemperature();
       int getLightLevel();

@@ -176,6 +176,11 @@ void Petduino::toggleLed() {
   digitalWrite(LED, !digitalRead(LED));
 }
 
+// Get the Petduino LED state
+bool Petduino::getLed() {
+  return digitalRead(LED) == HIGH;
+}
+
 // Get's the current temperature reading in °C from the temperature sensor
 float Petduino::getTemperature() {
   float temp = analogRead(TMP)*5/1024.0; // Convert reading to voltage

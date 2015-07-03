@@ -30,7 +30,7 @@
 
 class Petduino {
 
-    private :
+    protected:
 
       // Keywords
       #define DIN    12
@@ -95,37 +95,37 @@ class Petduino {
       Petduino();
 
       // Methods
-      void begin();
-      void update();
+      virtual void begin();
+      virtual void update();
 
-      void setLed(bool value);
-      void toggleLed();
-      bool getLed();
+      virtual void setLed(bool value);
+      virtual void toggleLed();
+      virtual bool getLed();
 
-      float getTemperature();
-      int getLightLevel();
+      virtual float getTemperature();
+      virtual int getLightLevel();
 
-      bool isBtn1Pressed();
-      bool isBtn1Held();
-      bool isBtn2Pressed();
-      bool isBtn2Held();
+      virtual bool isBtn1Pressed();
+      virtual bool isBtn1Held();
+      virtual bool isBtn2Pressed();
+      virtual bool isBtn2Held();
 
-      void playTone(unsigned int frequency, unsigned long duration);
-      void playMelody(unsigned int frequencies[], unsigned long durations[], unsigned long length, unsigned long loopCount);
-      void stopTone();
+      virtual void playTone(unsigned int frequency, unsigned long duration);
+      virtual void playMelody(unsigned int frequencies[], unsigned long durations[], unsigned long length, unsigned long loopCount);
+      virtual void stopTone();
 
-      void setScreenBrightness(unsigned int level);
-      void fillScreen();
-      void clearScreen();
-      void drawRow(int row, byte val);
-      void drawImage(byte img[]);
-      void playAnimation(byte frames[][8], unsigned long frameDurations[], unsigned long length, unsigned long loopCount);
-      void stopAnimation();
+      virtual void setScreenBrightness(unsigned int level);
+      virtual void fillScreen();
+      virtual void clearScreen();
+      virtual void drawRow(int row, byte val);
+      virtual void drawImage(byte img[]);
+      virtual void playAnimation(byte frames[][8], unsigned long frameDurations[], unsigned long length, unsigned long loopCount);
+      virtual void stopAnimation();
 
-      unsigned int getState();
-      void setState(unsigned int state);
-      void setNextState(unsigned int state, unsigned long interval);
-      void wait();
+      virtual unsigned int getState();
+      virtual void setState(unsigned int state);
+      virtual void setNextState(unsigned int state, unsigned long interval);
+      virtual void wait();
 
 };
 

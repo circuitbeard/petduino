@@ -25,7 +25,6 @@
  */
 
 #include "Petduino.h"
-#include <LedControl.h>
 
 // Constructor
 Petduino::Petduino() {
@@ -73,7 +72,7 @@ void Petduino::update() {
   updateAnimation();
 }
 
-// Private ===========================================
+// Protected ===========================================
 
 // Check to see if the state timer has expired and thus a change of state needs to occur
 bool Petduino::stateIntervalExpired() {

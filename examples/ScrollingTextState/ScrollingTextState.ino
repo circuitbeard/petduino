@@ -29,13 +29,16 @@
 #include <Petduino.h>
 #include "font_bold.h"
 
-#define CHAR_HEIGHT 8
+#define SCREEN_WIDTH 8
+#define SCREEN_HEIGHT 8
+
+#define CHAR_HEIGHT SCREEN_HEIGHT
 #define BUFFER_SIZE CHAR_HEIGHT*2
 #define SCROLL_SPEED 75
 #define MIN_CHAR 0x20
 #define MAX_CHAR 0x7f 
 
-const unsigned char scrollText[] PROGMEM = {"HELLO WORLD #CIRCUITBEARD 2015  \0"}; // Make sure you have enough space on the end to fill the buffer and ensure all chars scroll across screen
+const unsigned char scrollText[] PROGMEM = {"CB 2015\0"};
 unsigned long charBuffer[BUFFER_SIZE] = {0};
 
 unsigned int charCounter = 0;
@@ -75,7 +78,12 @@ void loop() {
       // Reset vars
       charCounter = 0;
       nextChar = 0;
-
+      scrollLen = 0;
+      scrollCount = 0;
+      
+      // Clear any existing buffer
+      clearBuffer();
+      
       // Start loading text into buffer
       pet.setState(LOAD_CHAR_STATE);
       break;
@@ -94,14 +102,18 @@ void loop() {
         // Increment char counter
         charCounter++;
 
-        // Draw current buffer
+        // Scroll char into view
         pet.setState(LOOP_STATE);
 
       } else {
-
-        // Finished so start again
-        pet.setState(INIT_STATE);
-
+        
+        // End of message
+        scrollLen = SCREEN_WIDTH;
+        scrollCount = 0;
+        
+        // Scroll buffer till clear
+        pet.setState(LOOP_STATE);
+        
       }
 
       break;
@@ -124,8 +136,14 @@ void loop() {
         
       } else {
         
-        // Load next char
-        pet.setState(LOAD_CHAR_STATE);
+        // Check to see if message has ended
+        if(nextChar != 0) {
+          // Load next char
+          pet.setState(LOAD_CHAR_STATE);
+        } else {
+          // No more chars and buffer clear, so start again
+          pet.setState(INIT_STATE);
+        }
         
       }
 
@@ -135,18 +153,35 @@ void loop() {
 }
 
 unsigned int loadCharIntoBuffer(unsigned int ascii){
+  
   if (ascii >= MIN_CHAR && ascii <= MAX_CHAR){ 
-    for (int a=0; a<CHAR_HEIGHT; a++) {                      
-      unsigned long c = pgm_read_byte_near(font + ((ascii - 0x20) * (CHAR_HEIGHT+1)) + a); // Get char row data
-      charBuffer[a*2] = charBuffer[a*2] | c; // Bitwise OR character row data onto end
+    for (int a=0; a<CHAR_HEIGHT; a++) {     
+      
+      // Get char row data
+      unsigned long c = pgm_read_byte_near(font + ((ascii - 0x20) * (CHAR_HEIGHT+1)) + a); 
+      
+      // Because unsigned longs are 32 bits, shift all the bits left 
+      // so they are just off screen otherwise there is a long pause 
+      // before anything displays
+      c = c<<(31-SCREEN_WIDTH); 
+      
+      // Bitwise OR character row data onto end
+      charBuffer[a*2] = charBuffer[a*2] | c; 
     }
-    return pgm_read_byte_near(font + ((ascii - 0x20) * (CHAR_HEIGHT+1)) + CHAR_HEIGHT); // Get width of char
+    
+    // Get and return width of char so we know how long to scroll for
+    return pgm_read_byte_near(font + ((ascii - 0x20) * (CHAR_HEIGHT+1)) + CHAR_HEIGHT); 
+    
   } else {
+    
+    // Char not in range so return 0 to move straight onto next char
     return 0;
   }
+  
 }
 
 void scrollBufferLeftOne(){
+  
   for (int a=0;a<CHAR_HEIGHT;a++){
     
     // Scroll offscreen data left one
@@ -157,15 +192,22 @@ void scrollBufferLeftOne(){
     
     // Scroll onscreen data left one
     x = charBuffer[(a*2)+1];               // Get onscreen char row data
-    x = x<<1;                              // Bitwise shift the row left 1
+    x = x << 1;                            // Bitwise shift the row left 1
     bitWrite(x,0,b);                       // Append on the incoming bit
     charBuffer[(a*2)+1] = x;               // Store new onscreen row data value
     
   }
+  
 }
 
 void drawBuffer(){
   for (int a=0; a<CHAR_HEIGHT; a++){
-    pet.drawRow(a, charBuffer[(a*2)+1]);   // Render onscreen row data
+    pet.drawRow(a, charBuffer[(a*2)+1]);  
+  }
+}
+
+void clearBuffer(){
+  for (int a=0; a<BUFFER_SIZE; a++){
+    charBuffer[a] = 0;
   }
 }

@@ -52,6 +52,8 @@ Petduino pet = Petduino();
 
 void setup() {
   
+  Serial.begin(9600);
+  
   // Setup Petduino
   pet.begin();
 
@@ -105,10 +107,11 @@ void loop() {
       break;
     case LOOP_STATE:
 
+      // Keep scrolling untill incoming char is completely onscreen
       if(scrollCount < scrollLen){
         
         // Shift the buffer along 1px
-        rotateBuffer();
+        scrollBufferLeftOne();
         
         // Draw the current buffer
         drawBuffer();
@@ -131,36 +134,38 @@ void loop() {
 
 }
 
-// Load character into buffer
 unsigned int loadCharIntoBuffer(unsigned int ascii){
   if (ascii >= MIN_CHAR && ascii <= MAX_CHAR){ 
     for (int a=0; a<CHAR_HEIGHT; a++) {                      
-        unsigned long c = pgm_read_byte_near(font + ((ascii - 0x20) * (CHAR_HEIGHT+1)) + a);     // Index into character table to get row data
-        charBuffer[a*2] = charBuffer[a*2] | c; // Bitwise OR character onto end
+      unsigned long c = pgm_read_byte_near(font + ((ascii - 0x20) * (CHAR_HEIGHT+1)) + a); // Get char row data
+      charBuffer[a*2] = charBuffer[a*2] | c; // Bitwise OR character row data onto end
     }
-    return pgm_read_byte_near(font + ((ascii - 0x20) * (CHAR_HEIGHT+1)) + CHAR_HEIGHT);     // Index into character table for kerning data
+    return pgm_read_byte_near(font + ((ascii - 0x20) * (CHAR_HEIGHT+1)) + CHAR_HEIGHT); // Get width of char
   } else {
     return 0;
   }
 }
 
-// Rotate the buffer
-void rotateBuffer(){
-  for (int a=0;a<CHAR_HEIGHT;a++){         // Loop each row in char
-    unsigned long x = charBuffer[a*2];     // Get low buffer entry
-    byte b = bitRead(x,31);                // Copy high order bit that gets lost in rotation
-    x = x<<1;                              // Rotate left one bit
-    charBuffer[a*2] = x;                   // Store new low buffer  
-    x = charBuffer[a*2+1];                 // Get high buffer entry
-    x = x<<1;                              // Rotate left one bit
-    bitWrite(x,0,b);                       // Store saved bit
-    charBuffer[a*2+1] = x;                 // Store new high buffer
+void scrollBufferLeftOne(){
+  for (int a=0;a<CHAR_HEIGHT;a++){
+    
+    // Scroll offscreen data left one
+    unsigned long x = charBuffer[a*2];     // Get offscreen char row data
+    byte b = bitRead(x,31);                // Get left most bit (the bit that will be pushed into view)
+    x = x<<1;                              // Bitwise shift the row left 1
+    charBuffer[a*2] = x;                   // Store new offscreen row data value
+    
+    // Scroll onscreen data left one
+    x = charBuffer[(a*2)+1];               // Get onscreen char row data
+    x = x<<1;                              // Bitwise shift the row left 1
+    bitWrite(x,0,b);                       // Append on the incoming bit
+    charBuffer[(a*2)+1] = x;               // Store new onscreen row data value
+    
   }
 }
 
-// Display Buffer on screen
 void drawBuffer(){
-  for (int a=0; a<CHAR_HEIGHT; a++){        // Loop each row in char
-    pet.drawRow(a, charBuffer[a*2+1]);      // Send row to screen
+  for (int a=0; a<CHAR_HEIGHT; a++){
+    pet.drawRow(a, charBuffer[(a*2)+1]);   // Render onscreen row data
   }
 }
